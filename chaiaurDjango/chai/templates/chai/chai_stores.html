@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+
+
+{% block content %}
+<h2 class="text-lg text-pink-800 mt-2 text-center my-8">Search Store by Chai Variety</h2>
+
+<form method="POST" class="text-pink">
+  {% csrf_token %}
+  {{ form.as_p }} <!-- This line renders the form fields -->
+  <button type="submit" class="w-30 bg-blue-600 hover:bg-blue-700 active:bg-blue-900 text-white py-2 rounded-lg font-semibold shadow transition duration-300 m-5">Search Store</button>
+</form>
+
+{% if stores %}
+  <h2>Stores Available</h2>
+  {% if store.image %}
+  <img src="{{ chai.image.url }}" alt="{{ chai.name }}" class="w-full h-56 object-cover" />
+{% endif %}
+
+  <ul>
+    {% for store in stores %}
+      <li class ="text-center my-8 text-3xl">{{ store.name }} - {{ store.location }} -
+        {% comment %} <img class="w-full h-56 object-cover" src="{{ chai.image.url }}" alt="{{ chai.name }}"> {% endcomment %}
+      </li>
+    {% endfor %}
+  </ul>
+{% endif %}
+
+  <div class="flex justify-center items-center min-h-[70vh] px-4 ">
+    <div class="bg-white rounded-2xl shadow-lg overflow-hidden max-w-md w-full">
+      <img src="{{ chai.image.url }}" alt="{{ chai.name }}" class="w-full h-64 object-cover" />
+
+      <div class="p-6">
+        <h1 class="text-3xl font-bold text-gray-800 mb-2">{{ chai.name }}</h1>
+        <p class="text-lg text-green-600 font-medium mb-2">₹{{ chai.price }}</p>
+        <h3 class="text-gray-700 mb-4">{{ chai.description }}</h3>
+
+        <button
+          class="w-full bg-blue-600 hover:bg-blue-700 active:bg-blue-900 text-white py-2 rounded-lg font-semibold shadow transition duration-300">
+          Order Now
+        </button>
+      </div>
+    </div>
+  </div>
+
+{% endblock content %}

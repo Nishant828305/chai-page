@@ -1,0 +1,12 @@
+body{
+  background-color:rgba(219, 189, 160, 0.79);
+  color: red;
+}
+h1{
+  text-align: center;
+  font-size: large;
+ 
+}
+p{
+  color: green;
+}

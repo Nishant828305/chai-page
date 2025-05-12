@@ -1,0 +1,34 @@
+{% extends "layout.html" %}
+
+{% block title %}
+  Chai Page
+{% endblock %}
+{% block content %}
+  <div class="text-center my-8 ">
+    <h1 class="text-4xl font-bold text-blue-600">Chai For You ☕</h1>
+    <p class="text-lg text-pink-800 mt-2">"How about a cup of chai to brighten your day?"</p>
+  </div>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 px-6 mb-10">
+    {% for chai in chais %}
+    <div class="bg-white rounded-2xl shadow-lg overflow-hidden transform hover:scale-105 transition duration-300">
+      <img class="w-full h-56 object-cover" src="{{ chai.image.url }}" alt="{{ chai.name }}">
+      <div class="p-4 text-center">
+        <h2 class="text-xl font-semibold text-gray-800 mb-1">{{ chai.name }}</h2>
+        {% comment %} <p class="text-sm text-gray-500 italic mb-1">{{ chai.chai_type }}</p> {% endcomment %}
+
+        <p class="text-green-700 font-medium text-lg mb-1">₹{{ chai.price }}</p>
+        {% comment %} <h3 class="text-gray-600 text-sm mb-3">{{ chai.description }}</h3> {% endcomment %}
+
+        <a href="{% url "chai_details" chai.id %}" class="block">
+          <button
+            type="button"
+            class="w-full bg-blue-600 hover:bg-blue-700 active:bg-blue-900 text-white font-semibold py-2 rounded-md transition duration-200 shadow-md">
+             Chai #{{ chai.id }}
+          </button>
+        </a>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+{% endblock %}
